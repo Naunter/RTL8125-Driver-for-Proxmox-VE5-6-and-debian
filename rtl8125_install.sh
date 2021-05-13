@@ -2,8 +2,10 @@
 # This script is automaticlly complie RTL8125 2.5G ethernet card driver for PVE
 # date 2020/4/25 22:35 UTC +8:00
 # Support Linux kernel version 2.4 to 5.6
+# source: https://github.com/tubaxiaosiji/RTL8125-Driver-for-Proxmox-VE5-6-and-debian
 
-
+# 2.5G Ethernet LINUX driver r8125 for kernel up to 5.6 
+# https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software
 
 # Check rtl8125 kernel module is exist it 【检查驱动是否加载】
 check=`lsmod | grep r8125`
@@ -87,8 +89,10 @@ apt-get install ${kernel_headers_latest_version} ${kernel_image_latest_version}
 apt-get -y install dkms build-essential make gcc libelf-dev
 
 
-tar vjxf $PWD/r8125-9.003.05.tar.bz2
-cd r8125-9.003.05
+wget -O /tmp/r8125.tar.bz2 https://github.com/Naunter/RTL8125-Driver-for-Proxmox-VE5-6-and-debian/raw/master/r8125-9.005.01.tar.bz2
+
+tar vjxf /tmp/r8125.tar.bz2
+cd r8125
 
 chmod a+x autorun.sh
 ./autorun.sh
